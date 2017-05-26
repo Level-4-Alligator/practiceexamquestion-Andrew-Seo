@@ -23,6 +23,54 @@ import java.util.ArrayList;
  ***********************/
 public final class PokerHand {
 	public static boolean IsStraight(ArrayList<Integer> cards) {
+		ArrayList<Integer> result = new ArrayList<>();
+		for (int i = 0; i < cards.size(); i++) {
+			if (cards.get(i) == cards.get(0) + 1 || cards.get(i) == cards.get(0) + 2 || cards.get(i) == cards.get(0) + 3
+					|| cards.get(i) == cards.get(0) + 4 || cards.get(i) == cards.get(0) + 5
+					|| cards.get(i) == cards.get(0) - 1 || cards.get(i) == cards.get(0) - 2
+					|| cards.get(i) == cards.get(0) - 3 || cards.get(i) == cards.get(0) - 4
+					|| cards.get(i) == cards.get(0) - 5) {
+				result.add(i);
+			}
+
+			if (result.size() == 5) {
+				while (result.get(0) + 1 == result.get(1) && result.get(1) + 1 == result.get(2)
+						&& result.get(2) + 1 == result.get(3) && result.get(3) + 1 == result.get(4)
+						&& result.get(4) + 1 == result.get(5)) {
+					for (int j = 0; j < result.size(); j++) {
+						if (result.get(0) < result.get(1)) {
+							int x = result.get(0);
+							int y = result.get(1);
+							result.set(1, x);
+							result.set(0, y);
+						}
+						if (result.get(1) < result.get(2)) {
+							int x = result.get(0);
+							int y = result.get(1);
+							result.set(1, x);
+							result.set(0, y);
+						}
+						if (result.get(3) < result.get(4)) {
+							int x = result.get(0);
+							int y = result.get(1);
+							result.set(1, x);
+							result.set(0, y);
+						}
+						if (result.get(4) < result.get(5)) {
+							int x = result.get(0);
+							int y = result.get(1);
+							result.set(1, x);
+							result.set(0, y);
+						}
+					}
+				}
+				if (result.get(0) + 1 == result.get(1) && result.get(1) + 1 == result.get(2)
+						&& result.get(2) + 1 == result.get(3) && result.get(3) + 1 == result.get(4)
+						&& result.get(4) + 1 == result.get(5)) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 }
